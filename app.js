@@ -30,12 +30,12 @@ app.use(express.static(path.join(__dirname, './public')))
 app.use('*', httpHeader)
 app.options('*', (_, res) => res.sendStatus(200))
 
-app.use(decryptRequest) // 解密请求数据
+// app.use(decryptRequest) // 解密请求数据 // 测试时注释掉
 app.use(checkToken)
 app.use(sensitiveFilter)
 app.use(xssFliter)
 app.use(translateNumber) // get请求参数预处理(string转化number)
-app.use(loggerMiddleware) // 日志打印
+//app.use(loggerMiddleware) // 日志打印
 loadRouter(app) // 路由加载
 
 app.use(errorConfig) // 404

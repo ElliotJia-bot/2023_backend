@@ -10,4 +10,6 @@ router.post('/updateAccessToken', wrapper(loginController.updateAccessToken))
 
 router.post('/logout', wrapper(loginController.logout))
 
+router.post('/sign', wrapper(loginController.sign))
+
 module.exports = router

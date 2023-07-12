@@ -26,7 +26,12 @@ class LoginController {
     const { refresh_token } = req.body
     return await loginService.logout({ refresh_token })
   }
-}
 
+  sign = async (req) => {
+    const { user_name, account, password, role_id } = req.body
+    return await loginService.sign({ user_name, account, password, role_id })
+  }
+
+}
 const loginController = new LoginController()
 module.exports = loginController

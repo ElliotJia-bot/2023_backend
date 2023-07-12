@@ -9,10 +9,11 @@ class UserService {
    * @returns {Promise<*>}
    */
   async createUser(userInfo) {
-    // const is_exit = await userDao.findUserByAccount(userInfo.account)
-    // if (!_.isEmpty(is_exit)) {
-    //   throw new Error('不允许重复创建')
-    // }
+    //  const is_exit = await userDao.findUserByAccount(userInfo.account)
+    //  if (!_.isEmpty(is_exit)) {
+    //    throw new Error('不允许重复创建')
+    //  } // 为了防止账号重复被添加
+
     const defaultRole = await roleDao.getDefaultRole()
     const result = await userDao.createUser({
       ...userInfo,

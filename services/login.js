@@ -37,6 +37,21 @@ class LoginService {
     }
   }
 
+  async sign({ user_name, account, password, role_id }) {
+    //user_name_sign, account_sign, password_sign, role_id_sign
+    // const account = account_sign
+    // const user_name = user_name_sign
+    // const password = password_sign
+    // const role_id = role_id_sign
+    const result = await userDao.createUser({
+      account,
+      user_name,
+      password,
+      role_id,
+    })
+
+  }
+
   async updateAccessToken({ refresh_token }) {
     const data = await redisClient.get(refresh_token)
     if (_.isEmpty(data)) throw new Error('该账号未登录，请登录')

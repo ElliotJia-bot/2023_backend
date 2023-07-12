@@ -1,4 +1,5 @@
 const permissionModel = require('../models/permission')
+// 它将会加载一个名为 permission 的模块，并将其中导出的 permission Model 赋值给 permissionModel 变量。
 
 class PermissionDao {
   //添加许可
@@ -25,6 +26,8 @@ class PermissionDao {
     // .skip((page - 1) * size)
     // .limit(size)
   }
+  // find() 是 Mongoose 提供的一个查询方法，用于查询集合中的文档。
+  // 在这个例子中，它将返回所有文档的查询结果。如果需要对查询结果进行分页，可以使用 .skip() 和 .limit() 等方法来指定查询的起始位置和返回的文档数量等
 
   //查询多个许可
   async findPermissionsById(permission_ids) {

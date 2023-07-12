@@ -34,6 +34,7 @@ class RoleDao {
 
   async findRoleByName(role_name) {
     return await roleModel.findOne({ role_name })
+    // 如果查询成功，则返回表示查询结果的文档对象；否则返回 null
   }
 
   //查询角色所有权限信息
@@ -49,6 +50,7 @@ class RoleDao {
     const matchPip = {}
     if (!lodash.isEmpty(role_id)) matchPip.role_id = toObjectId(role_id)
     if (!lodash.isEmpty(permission_ids)) matchPip.permission_ids = { $in: permission_ids?.map(toObjectId) }
+    // $in 操作符用于匹配包含在指定数组中的权限信息的唯一标识符，就是$in后面是一个取值范围
 
     const findRolesWithPermission = pagination({
       model: roleModel,
@@ -85,17 +87,19 @@ class RoleDao {
     return res?.permissions ?? []
   }
 
+  // 查询角色数据库中的某个文档，并返回查询结果
   async getDefaultRole() {
     return await roleModel.findOne()
   }
 
   async getRoleLabelAndValue() {
     return await roleModel.find(
-      {},
+      {}, // 查询条件
       {
-        _id: 1,
-        role_name: 1,
-      }
+        _id: 1, // 1为true，表示需要返回此字段
+        role_name: 1, // 1为true，表示需要返回此字段
+      } // 投影，需要返回的字段
+      // 还有一个可选参数（分页、排序、limit等）
     )
   }
 }
